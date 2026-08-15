@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Nexus Academy | Advanced AI Education & Course Registration</title>
+  <meta name="description" content="Join AI Nexus Academy. World-class AI education for beginners, developers, and leaders. Hands-on Generative AI, Machine Learning, AI Agents & MLOps cohorts.">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Three.js 3D Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+
+  <!-- 3D Holographic AI Neural Core Background Canvas -->
+  <canvas id="bg-3d-canvas"></canvas>
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="App.toggleMobileDrawer(false)"></div>
+
+  <!-- Left Navigation Sliding Drawer (Triggered by Left Menu Button) -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid #f1f5f9;">
+        <div class="nav-logo">
+          <div class="nav-logo-icon"><i class="fas fa-brain"></i></div>
+          <span>AI NEXUS <span class="gradient-text">ACADEMY</span></span>
+        </div>
+        <button class="modal-close-btn" style="position:static; width:36px; height:36px;" onclick="App.toggleMobileDrawer(false)" aria-label="Close Menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#94a3b8; margin-bottom:10px; padding:0 8px;">
+        Curriculum & Enrollment
+      </div>
+      <ul class="mobile-nav-list" style="margin-bottom:20px;">
+        <li class="mobile-nav-item">
+          <a onclick="AIWelcome.replayIntro(); App.toggleMobileDrawer(false);" style="color:var(--neon-cyan); font-weight:700;">
+            <i class="fas fa-robot" style="color:var(--neon-cyan);"></i> ✨ AI Guide Welcome Intro
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a data-route="home" data-view="home" onclick="App.showView('home'); App.toggleMobileDrawer(false);">
+            <i class="fas fa-home" style="color:var(--neon-cyan);"></i> Overview & Highlights
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a data-route="courses" data-view="courses" onclick="App.showView('courses'); App.toggleMobileDrawer(false);">
+            <i class="fas fa-cubes" style="color:var(--neon-violet);"></i> AI Specialization Tracks
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a data-route="certificate" data-view="certificate" onclick="App.showView('certificate'); App.toggleMobileDrawer(false);">
+            <i class="fas fa-award" style="color:#ffd700;"></i> Google AI Certificate Hub
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a data-route="register" data-view="register" onclick="App.showView('register'); App.toggleMobileDrawer(false);">
+            <i class="fas fa-bolt" style="color:var(--neon-magenta);"></i> Enrollment Wizard (5 Steps)
+          </a>
+        </li>
+      </ul>
+
+      <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#94a3b8; margin-bottom:10px; padding:0 8px;">
+        Student & Portal Access
+      </div>
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item">
+          <a data-route="student-hub" data-view="student-hub" onclick="App.showView('student-hub'); App.toggleMobileDrawer(false);">
+            <i class="fas fa-graduation-cap" style="color:var(--neon-cyan);"></i> Student Hub & Digital Pass
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a data-route="auth" data-view="auth" onclick="App.showView('auth'); App.toggleMobileDrawer(false);">
+            <i class="fas fa-user-lock" style="color:var(--neon-violet);"></i> Member Login & Auth
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="mobileDrawerAuthSlot" style="margin-top:20px; border-top:1px solid #f1f5f9; padding-top:18px;">
+      <button class="btn btn-secondary" style="width:100%; margin-bottom:8px; justify-content:center;" onclick="App.showView('auth'); App.toggleMobileDrawer(false);">
+        <i class="fas fa-sign-in-alt"></i> Sign In / Login
+      </button>
+      <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="App.showView('register'); App.toggleMobileDrawer(false);">
+        <i class="fas fa-user-plus"></i> Register Now
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FULL-SCREEN INTERACTIVE AI WELCOME INTRO SPLASH
+       ======================================================================== -->
+  <div id="aiWelcomeIntroScreen" class="ai-welcome-overlay theme-light">
+    <!-- Starfield Neural Mesh Canvas -->
+    <canvas id="neuralMeshCanvas" class="neural-mesh-canvas"></canvas>
+    
+    <!-- Ambient Neon Cyber Glows -->
+    <div class="ai-glow-orb ai-glow-1"></div>
+    <div class="ai-glow-orb ai-glow-2"></div>
+    <div class="ai-grid-floor"></div>
+
+    <div class="ai-welcome-box">
+      <!-- AI Robot / Holographic Entity Core -->
+      <div class="ai-hologram-character">
+        <div class="ai-orbit-ring-outer"></div>
+        <div class="ai-orbit-ring-inner"></div>
+        <div class="ai-particle-halo"></div>
+        <div class="ai-sphere-core">
+          <div class="ai-sphere-inner">
+            <div class="ai-face-display">
+              <div class="ai-eyes-row">
+                <div class="ai-eye"></div>
+                <div class="ai-eye"></div>
+              </div>
+              <div class="ai-mouth-wave">
+                <span class="mouth-bar"></span>
+                <span class="mouth-bar"></span>
+                <span class="mouth-bar"></span>
+                <span class="mouth-bar"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Holographic Status Tag -->
+      <div class="ai-tag-badge">
+        <span class="ai-live-beacon"></span>
+        <span>AI INTEL // NEXUS-V4 BOT ONLINE</span>
+      </div>
+
+      <!-- AI Speech Bubble & Typewriter Message -->
+      <div class="ai-speech-container">
+        <div class="ai-speech-bubble">
+          <div class="ai-speech-header">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <i class="fas fa-brain" style="color:var(--neon-cyan);"></i>
+              <span>NEXUS AI GREETING SYSTEM</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <button class="ai-sound-toggle-btn" id="aiThemeToggleBtn" onclick="AIWelcome.toggleTheme()" title="Switch Theme (White/Dark)">
+                <i class="fas fa-moon"></i>
+              </button>
+              <button class="ai-sound-toggle-btn" id="aiSoundToggleBtn" onclick="AIWelcome.toggleSound()" title="Toggle Voice Sound Synthesis">
+                <i class="fas fa-volume-up"></i>
+              </button>
+            </div>
+          </div>
+          
+          <h2 class="ai-typed-heading" id="aiTypedGreeting">
+            <!-- Dynamic typewriter greeting -->
+          </h2>
+
+          <p class="ai-typed-subtext" id="aiTypedMessage">
+            <!-- Dynamic subtext -->
+          </p>
+
+          <!-- Equalizer Audio Visualizer -->
+          <div class="ai-equalizer-bars" id="aiEqualizerBars">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enter Site Action Button & Gateways -->
+      <div class="ai-welcome-cta-wrap" id="aiWelcomeCtaWrap">
+        <button class="btn-ai-enter-glow" id="btnEnterSite" onclick="AIWelcome.enterSite()">
+          <span class="btn-sparkle-icon"><i class="fas fa-bolt"></i></span>
+          <span class="btn-enter-text">Enter AI Nexus Academy</span>
+          <i class="fas fa-arrow-right btn-arrow-icon"></i>
+        </button>
+
+        <div class="ai-welcome-quick-links">
+          <button class="ai-quick-chip" onclick="AIWelcome.enterSiteAndRoute('register')">
+            <i class="fas fa-rocket" style="color:var(--neon-cyan);"></i> Start Enrollment (₹1,500+)
+          </button>
+          <button class="ai-quick-chip" onclick="AIWelcome.enterSiteAndRoute('courses')">
+            <i class="fas fa-cubes" style="color:var(--neon-violet);"></i> Explore 4 AI Tiers
+          </button>
+          <button class="ai-quick-chip" onclick="AIWelcome.enterSiteAndRoute('certificate')">
+            <i class="fas fa-award" style="color:#ffd700;"></i> Verify Certificate
+          </button>
+          <button class="ai-quick-chip" onclick="AIWelcome.enterSiteAndRoute('auth')">
+            <i class="fas fa-user-lock" style="color:#10b981;"></i> Student Sign-In
+          </button>
+        </div>
+      </div>
+
+      <!-- Skip Button -->
+      <div style="margin-top: 18px;">
+        <button class="ai-skip-btn" onclick="AIWelcome.enterSite()">
+          Skip Intro & Enter Immediately <i class="fas fa-forward"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       TOP STREAMLINED NAVIGATION BAR (Public Facing)
+       ======================================================================== -->
+  <nav class="navbar">
+    <div class="container nav-container" style="display:flex; justify-content:space-between; align-items:center;">
+      <div style="display:flex; align-items:center;">
+        <!-- Single Left Menu Button to Slide Navigation Drawer -->
+        <button class="public-left-menu-btn" onclick="App.toggleMobileDrawer(true)" title="Open Navigation Menu" aria-label="Open Navigation Menu">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+
+        <a href="#home" class="nav-logo" data-route="home" onclick="App.showView('home')">
+          <div class="nav-logo-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <span>AI NEXUS <span class="gradient-text">ACADEMY</span></span>
+        </a>
+      </div>
+
+      <!-- Action Buttons on Right (Public Facing Only) -->
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm" onclick="AIWelcome.replayIntro()" style="background:rgba(2,132,199,0.08); color:var(--neon-cyan); border-color:rgba(2,132,199,0.3);" title="Replay AI Welcome Greeting">
+          <i class="fas fa-robot"></i> AI Guide
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="App.showView('auth')">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        <button class="btn btn-primary btn-sm" data-route="register" onclick="App.showView('register')">
+          <i class="fas fa-bolt"></i> Register Now
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ========================================================================
+       VIEW 1: HOME & OVERVIEW (Landing Page, Course Catalog, Calculator)
+       ======================================================================== -->
+  <main id="view-home" class="view-section active">
+    
+    <!-- Holographic Cyber-HUD Welcoming Hero Section (Option 5) -->
+    <section class="cyber-welcome-hero" id="welcomeSection">
+      <div class="cyber-grid-bg"></div>
+      <div class="hero-glow-1"></div>
+      <div class="hero-glow-2"></div>
+      
+      <div class="container" style="position:relative; z-index:1; text-align:center;">
+        
+        <!-- Live Hologram Telemetry HUD Bar -->
+        <div class="cyber-hud-telemetry" id="cyberTelemetryHud">
+          <div class="cyber-hud-item">
+            <span class="cyber-hud-dot"></span>
+            <span>SYSTEM: <span class="cyber-hud-val">ONLINE</span> // LATENCY: <span class="cyber-hud-val" id="hudLatencyVal">14ms</span></span>
+          </div>
+          <div class="cyber-hud-item">
+            <i class="fas fa-users" style="color:var(--neon-cyan);"></i>
+            <span>GLOBAL SCHOLARS: <span class="cyber-hud-val" id="hudScholarsCount">1,420+</span></span>
+          </div>
+          <div class="cyber-hud-item">
+            <i class="fas fa-microchip" style="color:#d946ef;"></i>
+            <span>A100 GPU NODES: <span class="cyber-hud-val">READY</span></span>
+          </div>
+          <div class="cyber-hud-item">
+            <i class="fas fa-award" style="color:#ffd700;"></i>
+            <span>GOOGLE CREDS: <span class="cyber-hud-val">4,900+ ISSUED</span></span>
+          </div>
+        </div>
+
+        <div class="hero-badge" style="background:rgba(255,255,255,0.9); backdrop-filter:blur(10px); margin-bottom:20px;">
+          <span class="pulse-dot"></span>
+          <span>⚡ Fall 2026 AI Cohort Admissions Now Open &bull; 4 Tiered Tracks</span>
+        </div>
+
+        <h1 class="hero-title" style="max-width:960px; margin:0 auto 20px auto;">
+          Welcome to <span class="gradient-text">AI Nexus Academy</span>
+        </h1>
+
+        <p class="hero-description" style="max-width:760px; margin:0 auto 30px auto; font-size:1.15rem;">
+          Your gateway to master cutting-edge Artificial Intelligence: From zero-code business automations to Deep Learning neural networks, Enterprise RAG, and autonomous Multi-Agent AI Swarms.
+        </p>
+
+        <!-- Interactive AI Prompt Explorer Pill Selector -->
+        <div style="display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:36px;">
+          <span style="font-size:0.8rem; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:0.06em;">Explore Specializations:</span>
+          <button class="filter-chip active" style="font-size:0.8rem; padding:6px 14px;" onclick="App.startEnrollment('ai-beginners')">
+            <i class="fas fa-robot" style="color:#0284c7;"></i> Low Tier: Foundation (₹1,500)
+          </button>
+          <button class="filter-chip" style="font-size:0.8rem; padding:6px 14px;" onclick="App.startEnrollment('applied-ml-ds')">
+            <i class="fas fa-brain" style="color:#7c3aed;"></i> Mid Tier: PyTorch ML (₹2,500)
+          </button>
+          <button class="filter-chip" style="font-size:0.8rem; padding:6px 14px;" onclick="App.startEnrollment('genai-agents')">
+            <i class="fas fa-network-wired" style="color:#e11d48;"></i> High Tier: LLMs & Agents (₹3,500)
+          </button>
+          <button class="filter-chip" style="font-size:0.8rem; padding:6px 14px;" onclick="App.startEnrollment('fullstack-ai-engineer')">
+            <i class="fas fa-microchip" style="color:#059669;"></i> Highest: Full-Stack Pro (₹5,000)
+          </button>
+        </div>
+
+        <div class="hero-actions" style="margin-bottom:48px;">
+          <button class="btn btn-primary btn-lg" data-route="register" style="box-shadow:0 8px 25px rgba(2,132,199,0.35);">
+            <i class="fas fa-rocket"></i> Initialize 5-Step Enrollment
+          </button>
+          <button class="btn btn-secondary btn-lg" onclick="document.getElementById('guestPassGeneratorSlot').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-id-badge" style="color:#0284c7;"></i> Get Instant Visitor Pass
+          </button>
+          <button class="btn btn-secondary btn-lg" data-route="certificate">
+            <i class="fas fa-award" style="color:#ffd700;"></i> Verify Certificate
+          </button>
+        </div>
+
+        <!-- 4-Tier Holographic Cards Showcase -->
+        <div class="cyber-cards-grid">
+          
+          <!-- Card 1: Low Tier -->
+          <div class="cyber-holo-card" style="--holo-accent:linear-gradient(90deg, #00f0ff, #0072ff);" onclick="App.startEnrollment('ai-beginners')">
+            <div>
+              <span class="cyber-tier-tag tier-tag-cyan">🌱 Low Tier &bull; Foundation</span>
+              <div style="font-size:0.8rem; font-weight:700; color:#0284c7; font-family:var(--font-mono);">AI-101</div>
+              <h4 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin:4px 0 8px 0;">Generative AI & No-Code Automation</h4>
+              <p style="font-size:0.825rem; color:#64748b; line-height:1.5; margin-bottom:12px;">Prompt engineering (ChatGPT-4o, Claude 3.5), Midjourney v6, Zapier AI bots.</p>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <span class="tech-chip" style="font-size:0.7rem;"><i class="fas fa-check" style="color:#059669;"></i> Zero Code</span>
+                <span class="tech-chip" style="font-size:0.7rem;">4 Weeks</span>
+              </div>
+            </div>
+            <div>
+              <div class="cyber-card-price-row">
+                <span class="cyber-card-price">₹1,500</span>
+                <span class="cyber-card-orig">₹2,200</span>
+              </div>
+              <button class="btn btn-primary btn-sm" style="width:100%; justify-content:center; font-size:0.8rem;">
+                Select Tier 1 <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Mid Tier -->
+          <div class="cyber-holo-card" style="--holo-accent:linear-gradient(90deg, #a855f7, #6366f1);" onclick="App.startEnrollment('applied-ml-ds')">
+            <div>
+              <span class="cyber-tier-tag tier-tag-violet">⭐ Mid Tier &bull; Professional</span>
+              <div style="font-size:0.8rem; font-weight:700; color:#7c3aed; font-family:var(--font-mono);">AI-201</div>
+              <h4 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin:4px 0 8px 0;">Applied Machine & Deep Learning</h4>
+              <p style="font-size:0.825rem; color:#64748b; line-height:1.5; margin-bottom:12px;">Python for AI, PyTorch neural networks, computer vision, FastAPI models.</p>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <span class="tech-chip" style="font-size:0.7rem;"><i class="fas fa-brain" style="color:#7c3aed;"></i> PyTorch</span>
+                <span class="tech-chip" style="font-size:0.7rem;">8 Weeks</span>
+              </div>
+            </div>
+            <div>
+              <div class="cyber-card-price-row">
+                <span class="cyber-card-price">₹2,500</span>
+                <span class="cyber-card-orig">₹3,500</span>
+              </div>
+              <button class="btn btn-primary btn-sm" style="width:100%; justify-content:center; font-size:0.8rem; background:linear-gradient(135deg, #7c3aed, #6366f1);">
+                Select Tier 2 <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: High Tier -->
+          <div class="cyber-holo-card" style="--holo-accent:linear-gradient(90deg, #ec4899, #8b5cf6);" onclick="App.startEnrollment('genai-agents')">
+            <div>
+              <span class="cyber-tier-tag tier-tag-rose">🔥 High Tier &bull; Advanced</span>
+              <div style="font-size:0.8rem; font-weight:700; color:#e11d48; font-family:var(--font-mono);">AI-301</div>
+              <h4 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin:4px 0 8px 0;">Enterprise LLMs, RAG & Agents</h4>
+              <p style="font-size:0.825rem; color:#64748b; line-height:1.5; margin-bottom:12px;">Enterprise RAG, Pinecone vector DBs, LangGraph, CrewAI multi-agent swarms.</p>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <span class="tech-chip" style="font-size:0.7rem;"><i class="fas fa-network-wired" style="color:#e11d48;"></i> CrewAI</span>
+                <span class="tech-chip" style="font-size:0.7rem;">10 Weeks</span>
+              </div>
+            </div>
+            <div>
+              <div class="cyber-card-price-row">
+                <span class="cyber-card-price">₹3,500</span>
+                <span class="cyber-card-orig">₹4,800</span>
+              </div>
+              <button class="btn btn-primary btn-sm" style="width:100%; justify-content:center; font-size:0.8rem; background:linear-gradient(135deg, #e11d48, #8b5cf6);">
+                Select Tier 3 <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Highest Tier -->
+          <div class="cyber-holo-card" style="--holo-accent:linear-gradient(90deg, #10b981, #00f0ff);" onclick="App.startEnrollment('fullstack-ai-engineer')">
+            <div>
+              <span class="cyber-tier-tag tier-tag-emerald">🚀 Highest Tier &bull; Masterclass</span>
+              <div style="font-size:0.8rem; font-weight:700; color:#059669; font-family:var(--font-mono);">AI-401</div>
+              <h4 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin:4px 0 8px 0;">Full-Stack AI Engineering & MLOps</h4>
+              <p style="font-size:0.825rem; color:#64748b; line-height:1.5; margin-bottom:12px;">FastAPI + Next.js AI SDK, Docker, Cloud GPUs (vLLM inference), MLOps pipelines.</p>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <span class="tech-chip" style="font-size:0.7rem;"><i class="fas fa-microchip" style="color:#059669;"></i> A100 GPU</span>
+                <span class="tech-chip" style="font-size:0.7rem;">14 Weeks</span>
+              </div>
+            </div>
+            <div>
+              <div class="cyber-card-price-row">
+                <span class="cyber-card-price">₹5,000</span>
+                <span class="cyber-card-orig">₹6,800</span>
+              </div>
+              <button class="btn btn-primary btn-sm" style="width:100%; justify-content:center; font-size:0.8rem; background:linear-gradient(135deg, #059669, #0284c7);">
+                Select Tier 4 <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Holographic Guest / Visitor Pass Generator Panel -->
+        <div class="cyber-pass-generator-panel" id="guestPassGeneratorSlot">
+          <div class="cyber-pass-grid">
+            <div>
+              <span class="section-tag" style="background:rgba(2, 132, 199, 0.1); border-color:rgba(2, 132, 199, 0.25); color:#0284c7; margin-bottom:12px;">
+                <i class="fas fa-id-badge"></i> Instant Holographic Guest Credential
+              </span>
+              <h3 style="font-size:1.65rem; font-weight:800; color:#0f172a; margin-bottom:10px;">
+                Generate Your AI Nexus Guest Pass
+              </h3>
+              <p style="color:#475569; font-size:0.925rem; line-height:1.6; margin-bottom:22px;">
+                Enter your name to generate an instant cryptographic Visitor Pass. Explore our curriculum, trial GPU compute sandboxes, and verify student credentials.
+              </p>
+
+              <div class="cyber-pass-input-row">
+                <input type="text" class="input-custom cyber-pass-input" id="guestPassInputName" placeholder="Enter your full name (e.g. Alex Rivera)">
+                <button class="btn btn-primary cyber-pass-btn" onclick="App.generateGuestPass()">
+                  <i class="fas fa-magic"></i> Generate Pass
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Pass Output Slot -->
+            <div id="guestPassRenderSlot">
+              <div class="cyber-pass-result-badge">
+                <div class="cyber-pass-scanline"></div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #e2e8f0; padding-bottom:10px;">
+                  <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:800; color:#0284c7;">// AI NEXUS GUEST PASS</span>
+                  <span class="status-badge status-confirmed" style="font-size:0.72rem; padding:4px 10px;">
+                    <i class="fas fa-check-circle"></i> VERIFIED VISITOR
+                  </span>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+                  <div style="width:48px; height:48px; border-radius:50%; background:var(--grad-primary); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; box-shadow:0 4px 12px rgba(2, 132, 199, 0.35); flex-shrink:0;" id="guestPassAvatar">
+                    AR
+                  </div>
+                  <div>
+                    <h4 style="font-size:1.15rem; color:#0f172a; font-weight:800; line-height:1.3;" id="guestPassNameDisplay">Alex Rivera</h4>
+                    <div style="font-size:0.775rem; color:#64748b; font-family:var(--font-mono);" id="guestPassIdDisplay">GUEST-2026-8492</div>
+                  </div>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.775rem; color:#64748b; margin-top:10px; border-top:1px dashed #e2e8f0; padding-top:10px;">
+                  <span>Clearance: <strong style="color:#0f172a;">Open AI Campus Tour</strong></span>
+                  <button class="btn btn-secondary btn-sm" style="font-size:0.75rem; padding:5px 12px; font-weight:700;" onclick="App.downloadGuestPass()">
+                    <i class="fas fa-download"></i> Save Pass
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Course Showcase Section (Features 1C & 2A) -->
+    <section class="section" id="coursesSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-cubes"></i> Industry-Grade Curriculum</span>
+          <h2 class="section-title">Specialized <span class="gradient-text">AI Learning Tracks</span></h2>
+          <p class="section-desc">Choose the learning track engineered for your current skill level and future career ambitions.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="course-filters">
+          <button class="filter-btn active" onclick="App.filterCourses('ALL', this)">All Programs</button>
+          <button class="filter-btn" onclick="App.filterCourses('Beginner', this)">1C: Beginners & Business</button>
+          <button class="filter-btn" onclick="App.filterCourses('Intermediate', this)">Data Science & ML</button>
+          <button class="filter-btn" onclick="App.filterCourses('Advanced', this)">GenAI & Multi-Agents</button>
+        </div>
+
+        <!-- Course Cards Grid -->
+        <div class="course-grid" id="courseShowcaseGrid">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Learning Roadmap / Timeline (3D) -->
+    <section class="section" style="background: rgba(241, 245, 249, 0.6);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-route"></i> Structured Progression</span>
+          <h2 class="section-title">The <span class="gradient-violet-text">AI Mastery Roadmap</span></h2>
+          <p class="section-desc">A structured week-by-week transformation from foundational concepts to deploying production-ready AI models.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:24px;">
+          <div class="glass-panel" style="padding: 28px; position:relative;">
+            <span class="course-code" style="color:var(--neon-cyan); margin-bottom:12px; display:inline-block;">STAGE 01</span>
+            <h4 style="font-size:1.2rem; margin-bottom:8px; color:#0f172a;">AI Foundations & Tools</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">Python for Data Science, Prompt Engineering, ChatGPT, Claude, Midjourney & Automation workflows.</p>
+            <div style="font-size:0.75rem; color:var(--neon-cyan); font-weight:600;"><i class="fas fa-check"></i> 10+ Practical Exercises</div>
+          </div>
+
+          <div class="glass-panel" style="padding: 28px; position:relative;">
+            <span class="course-code" style="color:var(--neon-violet); margin-bottom:12px; display:inline-block;">STAGE 02</span>
+            <h4 style="font-size:1.2rem; margin-bottom:8px; color:#0f172a;">Machine & Deep Learning</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">Supervised algorithms, PyTorch neural networks, feature engineering, loss optimization & evaluation.</p>
+            <div style="font-size:0.75rem; color:var(--neon-violet); font-weight:600;"><i class="fas fa-check"></i> Predictive ML Capstone</div>
+          </div>
+
+          <div class="glass-panel" style="padding: 28px; position:relative;">
+            <span class="course-code" style="color:var(--neon-magenta); margin-bottom:12px; display:inline-block;">STAGE 03</span>
+            <h4 style="font-size:1.2rem; margin-bottom:8px; color:#0f172a;">Generative AI & Agents</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">Enterprise RAG pipelines, Vector Databases (Pinecone/Chroma), LangChain & Autonomous Multi-Agent Swarms.</p>
+            <div style="font-size:0.75rem; color:var(--neon-magenta); font-weight:600;"><i class="fas fa-check"></i> Custom Enterprise Agent</div>
+          </div>
+
+          <div class="glass-panel" style="padding: 28px; position:relative;">
+            <span class="course-code" style="color:var(--neon-emerald); margin-bottom:12px; display:inline-block;">STAGE 04</span>
+            <h4 style="font-size:1.2rem; margin-bottom:8px; color:#0f172a;">MLOps & Cloud Deployment</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">Containerization with Docker, FastAPI asynchronous backends, Cloud GPU deployment, monitoring & scale.</p>
+            <div style="font-size:0.75rem; color:var(--neon-emerald); font-weight:600;"><i class="fas fa-check"></i> Certified AI Engineer Pass</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Automatic AI Certificate Showcase Section -->
+    <section class="section" id="certShowcaseSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" style="color:#ffd700; border-color:rgba(255,215,0,0.4); background:rgba(255,215,0,0.1);">
+            <i class="fas fa-award"></i> Verified AI Credentials
+          </span>
+          <h2 class="section-title">Automatic <span class="gradient-text">AI Certificate Generation</span></h2>
+          <p class="section-desc">Every graduate receives an officially verifiable, cryptographic digital certificate embedded with a unique verification QR code and holographic security seal.</p>
+        </div>
+
+        <div class="glass-panel" style="padding: 40px; border-color: rgba(2, 132, 199, 0.3); box-shadow: var(--shadow-md);">
+          <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center;">
+            <div>
+              <span class="section-tag" style="background:rgba(2, 132, 199, 0.08); border-color:rgba(2, 132, 199, 0.25); color:var(--neon-cyan); margin-bottom:12px;">
+                <i class="fas fa-fingerprint"></i> Cryptographically Verifiable
+              </span>
+              <h3 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 14px;">Instant Recognition for Your AI Expertise</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">
+                Upon completing course milestones or enrolling, our automated system generates your official Google-grade Certificate of Completion. Instantly printable in high-resolution, exportable as credentials, and verified by AI Nexus Institute.
+              </p>
+              
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px;">
+                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:#334155;">
+                  <i class="fas fa-check-circle" style="color:#1a73e8;"></i> Unique Serial Hash & Dynamic QR Code verification
+                </li>
+                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:#334155;">
+                  <i class="fas fa-check-circle" style="color:#ea4335;"></i> Signed by Dean & Director of AI Research
+                </li>
+                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:#334155;">
+                  <i class="fas fa-check-circle" style="color:#34a853;"></i> 1-Click High-Res PDF Print & LinkedIn credential sharing
+                </li>
+              </ul>
+
+              <div style="display:flex; gap:14px; flex-wrap:wrap;">
+                <button class="btn btn-primary" data-route="certificate">
+                  <i class="fas fa-certificate"></i> Open Certificate Generator
+                </button>
+                <button class="btn btn-secondary" data-route="register">
+                  <i class="fas fa-rocket"></i> Enroll & Earn Certificate
+                </button>
+              </div>
+            </div>
+
+            <!-- Certificate Mini Google Preview Box -->
+            <div style="background:#ffffff; border: 1px solid #dadce0; border-radius: 12px; padding: 24px; text-align: left; box-shadow: 0 10px 30px rgba(60, 64, 67, 0.12); position:relative; overflow:hidden;">
+              <div style="display:flex; height:4px; position:absolute; top:0; left:0; right:0;">
+                <div style="flex:1; background:#1a73e8;"></div>
+                <div style="flex:1; background:#ea4335;"></div>
+                <div style="flex:1; background:#fbbc04;"></div>
+                <div style="flex:1; background:#34a853;"></div>
+              </div>
+              <div style="font-size:0.75rem; color:#1a73e8; letter-spacing:0.12em; font-weight:800; margin-top:6px; margin-bottom:4px;">PROFESSIONAL CERTIFICATE</div>
+              <div style="font-size:0.8rem; color:#5f6368; margin-bottom:10px;">AI NEXUS ACADEMY</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#202124; margin-bottom:4px;">Alex Rivera</div>
+              <p style="font-size:0.85rem; color:#1a73e8; font-weight:700; margin-bottom:14px;">Generative AI, LLMs & Autonomous AI Agents</p>
+              <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #f1f3f4; padding-top:12px;">
+                <div style="font-size:0.7rem; color:#34a853; font-weight:700;"><i class="fas fa-check-circle"></i> VERIFIED GOOGLE-GRADE</div>
+                <div style="font-family:var(--font-mono); font-size:0.75rem; color:#5f6368; font-weight:700;">ID: G-NEX-2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Testimonials Section -->
+    <section class="section" style="background: rgba(12, 16, 24, 0.4);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-star"></i> Alumni Success</span>
+          <h2 class="section-title">What Our <span class="gradient-text">Graduates Say</span></h2>
+          <p class="section-desc">Join hundreds of engineers, data analysts, and leaders who accelerated their AI journey.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px;" id="testimonialsGrid">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="section">
+      <div class="container" style="max-width: 840px;">
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-question-circle"></i> Got Questions?</span>
+          <h2 class="section-title">Frequently Asked <span class="gradient-violet-text">Questions</span></h2>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div class="glass-panel faq-item" style="padding:20px 24px; cursor:pointer;">
+            <div class="faq-question" style="display:flex; justify-content:space-between; align-items:center; font-weight:700; color:#fff;">
+              <span>I have zero coding knowledge. Can I join Track 1C?</span>
+              <i class="fas fa-chevron-down" style="color:var(--neon-cyan);"></i>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-top:12px;">Yes! Track 1C (AI Literacy & GenAI for Beginners & Business) is crafted specifically for non-programmers, marketers, project managers, and business owners.</p>
+          </div>
+
+          <div class="glass-panel faq-item" style="padding:20px 24px; cursor:pointer;">
+            <div class="faq-question" style="display:flex; justify-content:space-between; align-items:center; font-weight:700; color:#fff;">
+              <span>Are class recordings provided if I miss a live session?</span>
+              <i class="fas fa-chevron-down" style="color:var(--neon-cyan);"></i>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-top:12px;">Yes! All live sessions are recorded in high-definition and available within 2 hours in your Student Hub portal with lifetime access.</p>
+          </div>
+
+          <div class="faq-item glass-panel" style="padding:20px 24px; cursor:pointer;">
+            <div class="faq-question" style="display:flex; justify-content:space-between; align-items:center; font-weight:700; color:#fff;">
+              <span>Do I receive a verified Digital Certificate and Student Pass?</span>
+              <i class="fas fa-chevron-down" style="color:var(--neon-cyan);"></i>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-top:12px;">Absolutely. Upon enrollment, you immediately receive a verifiable Digital Student ID Badge with QR verification, followed by an official certificate upon capstone completion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       VIEW: AI CERTIFICATE GENERATOR & CREDENTIAL VERIFICATION
+       ======================================================================== -->
+  <main id="view-certificate" class="view-section">
+    <div class="view-banner">
+      <div class="container">
+        <span class="section-tag" style="color:#ffd700; border-color:rgba(255,215,0,0.4); background:rgba(255,215,0,0.1);">
+          <i class="fas fa-award"></i> Credential Verification & Accreditation
+        </span>
+        <h1 style="font-size:clamp(2rem, 4vw, 3rem); font-weight:900;">Official <span class="gradient-text">AI Certificate Generator</span></h1>
+        <p style="color:var(--text-muted); margin-top:8px;">Instant automatic issuance of official, cryptographically verifiable certificates for AI Nexus graduates.</p>
+      </div>
+    </div>
+
+    <div class="container section" style="padding-top: 20px;">
+      
+      <!-- Interactive Generator Customizer Bar -->
+      <div class="glass-panel" style="padding: 24px 28px; margin-bottom: 36px; border-color: rgba(255,215,0,0.3);">
+        <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 16px; align-items: flex-end;">
+          <div class="form-group-custom">
+            <label class="form-label-custom"><i class="fas fa-user-graduate" style="color:var(--neon-cyan);"></i> Certificate Recipient Full Name</label>
+            <input type="text" class="input-custom" id="certInputName" placeholder="Enter student or graduate name" value="Alex Rivera">
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom"><i class="fas fa-microchip" style="color:var(--neon-violet);"></i> Accredited Specialization Track</label>
+            <select class="select-custom" id="certInputTrack">
+              <option value="AI Literacy & GenAI for Beginners & Business">AI-101: AI Literacy & GenAI for Beginners</option>
+              <option value="Applied Machine Learning & Data Science">AI-201: Applied Machine Learning & Data Science</option>
+              <option value="Generative AI, LLMs & Autonomous AI Agents" selected>AI-301: Generative AI, LLMs & Autonomous AI Agents</option>
+              <option value="Full-Stack AI Engineer & MLOps Masterclass">AI-401: Full-Stack AI Engineer & MLOps Masterclass</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" onclick="App.generateCustomCertificate()">
+            <i class="fas fa-sync-alt"></i> Generate Certificate
+          </button>
+        </div>
+      </div>
+
+      <!-- Render Target for Certificate -->
+      <div id="certificateViewResultSlot">
+        <!-- Rendered dynamically by AICertificateGenerator -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       VIEW: SIGN IN & AUTHENTICATION PORTAL
+       ======================================================================== -->
+  <main id="view-auth" class="view-section">
+    <div class="view-banner">
+      <div class="container">
+        <span class="section-tag"><i class="fas fa-lock"></i> Secure Student Access</span>
+        <h1 style="font-size:clamp(2rem, 4vw, 3rem); font-weight:900;">AI Nexus <span class="gradient-text">Student Sign In</span></h1>
+        <p style="color:var(--text-muted); margin-top:8px;">Sign in to access your student learning portal, live classrooms, and verified Google credentials.</p>
+      </div>
+    </div>
+
+    <div class="container section" style="padding-top: 20px;">
+      <div class="auth-wrapper">
+        
+        <!-- Tab Switcher: Sign In vs Create Account -->
+        <div class="auth-tab-switch">
+          <button class="auth-tab-btn active" data-tab="signin" onclick="Auth.setAuthTab('signin')">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </button>
+          <button class="auth-tab-btn" data-tab="signup" onclick="Auth.setAuthTab('signup')">
+            <i class="fas fa-user-plus"></i> Create Account
+          </button>
+        </div>
+
+        <!-- 1-Click Demo Account Box -->
+        <div class="demo-account-box">
+          <div class="demo-account-title">
+            <i class="fas fa-key"></i> Quick 1-Click Demo Credentials
+          </div>
+          <div class="demo-buttons-wrap">
+            <button class="demo-fill-btn" style="width:100%; justify-content:center;" onclick="Auth.fillDemoCreds('student')">
+              <i class="fas fa-user-graduate" style="color:var(--neon-cyan);"></i> Fill Student Demo (Alex Rivera)
+            </button>
+          </div>
+        </div>
+
+        <!-- SIGN IN PANE -->
+        <div id="authSignInPane">
+          <form onsubmit="Auth.handleLogin(event)">
+            <div class="form-group-custom" style="margin-bottom: 16px;">
+              <label class="form-label-custom"><i class="fas fa-envelope" style="color:var(--neon-cyan);"></i> Email Address</label>
+              <input type="email" class="input-custom" id="loginEmail" placeholder="your.name@example.com" value="alex.rivera@example.com" required>
+            </div>
+
+            <div class="form-group-custom" style="margin-bottom: 18px;">
+              <label class="form-label-custom"><i class="fas fa-lock" style="color:var(--neon-violet);"></i> Password</label>
+              <div style="position:relative;">
+                <input type="password" class="input-custom" id="loginPassword" placeholder="••••••••" value="student123" required style="padding-right:45px;">
+                <button type="button" onclick="Auth.togglePasswordVisibility('loginPassword', 'loginPassEyeIcon')" style="position:absolute; right:14px; top:50%; transform:translateY(-50%); color:var(--text-dim); cursor:pointer;">
+                  <i class="fas fa-eye" id="loginPassEyeIcon"></i>
+                </button>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; font-size:0.825rem;">
+              <label style="display:flex; align-items:center; gap:6px; color:var(--text-muted); cursor:pointer;">
+                <input type="checkbox" checked style="accent-color:var(--neon-cyan);"> Remember me & keep signed in
+              </label>
+              <a href="#" onclick="App.showToast('Reset Link Sent', 'Password reset instructions have been sent to your email.', 'info')" style="color:var(--neon-cyan); font-weight:600;">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 20px;">
+              <i class="fas fa-sign-in-alt"></i> Sign In to Student Portal
+            </button>
+          </form>
+
+          <div class="auth-divider"><span>OR CONTINUE WITH</span></div>
+
+          <div class="social-auth-grid">
+            <button class="social-auth-btn" onclick="Auth.fillDemoCreds('student'); Auth.handleLogin();">
+              <i class="fab fa-google" style="color:#ea4335;"></i> Google Sign In
+            </button>
+            <button class="social-auth-btn" onclick="Auth.fillDemoCreds('student'); Auth.handleLogin();">
+              <i class="fab fa-github" style="color:#24292e;"></i> GitHub Sign In
+            </button>
+          </div>
+
+          <div style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:20px;">
+            Don't have an account yet? 
+            <a href="#" onclick="Auth.setAuthTab('signup'); return false;" style="color:var(--neon-cyan); font-weight:700;">Create an Account</a>
+          </div>
+        </div>
+
+        <!-- SIGN UP / CREATE ACCOUNT PANE -->
+        <div id="authSignUpPane" style="display:none;">
+          <form onsubmit="Auth.handleSignUp(event)">
+            <div class="form-group-custom" style="margin-bottom: 16px;">
+              <label class="form-label-custom"><i class="fas fa-user" style="color:var(--neon-cyan);"></i> Full Legal Name</label>
+              <input type="text" class="input-custom" id="signupName" placeholder="e.g. Jordan Miller" required>
+            </div>
+
+            <div class="form-group-custom" style="margin-bottom: 16px;">
+              <label class="form-label-custom"><i class="fas fa-envelope" style="color:var(--neon-cyan);"></i> Email Address</label>
+              <input type="email" class="input-custom" id="signupEmail" placeholder="jordan@example.com" required>
+            </div>
+
+            <div class="form-group-custom" style="margin-bottom: 16px;">
+              <label class="form-label-custom"><i class="fas fa-lock" style="color:var(--neon-violet);"></i> Create Password</label>
+              <div style="position:relative;">
+                <input type="password" class="input-custom" id="signupPassword" placeholder="Minimum 6 characters" required style="padding-right:45px;">
+                <button type="button" onclick="Auth.togglePasswordVisibility('signupPassword', 'signupPassEyeIcon')" style="position:absolute; right:14px; top:50%; transform:translateY(-50%); color:var(--text-dim); cursor:pointer;">
+                  <i class="fas fa-eye" id="signupPassEyeIcon"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group-custom" style="margin-bottom: 24px;">
+              <label class="form-label-custom"><i class="fas fa-microchip" style="color:var(--neon-magenta);"></i> Target AI Specialization</label>
+              <select class="select-custom" id="signupTrack">
+                <option value="AI-101">1C: AI Literacy & GenAI for Beginners</option>
+                <option value="AI-201">Applied Machine Learning & Data Science</option>
+                <option value="AI-301" selected>Generative AI, LLMs & Autonomous AI Agents</option>
+                <option value="AI-401">Full-Stack AI Engineer & MLOps Masterclass</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 16px;">
+              <i class="fas fa-user-plus"></i> Create Account & Proceed to Enrollment
+            </button>
+          </form>
+
+          <div style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:20px;">
+            Already have an account? 
+            <a href="#" onclick="Auth.setAuthTab('signin'); return false;" style="color:var(--neon-cyan); font-weight:700;">Sign In</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       VIEW 2: MULTI-STEP ENROLLMENT WIZARD (Features 4A, 4B, 4C & 3B)
+       ======================================================================== -->
+  <main id="view-register" class="view-section">
+    <div class="view-banner">
+      <div class="container">
+        <span class="section-tag"><i class="fas fa-user-plus"></i> Admissions Portal</span>
+        <h1 style="font-size:clamp(2rem, 4vw, 3rem); font-weight:900;">Student <span class="gradient-text">Course Registration</span></h1>
+        <p style="color:var(--text-muted); margin-top:8px;">Complete the interactive steps below to reserve your seat and generate your official Student ID pass.</p>
+      </div>
+    </div>
+
+    <div class="container section" style="padding-top: 20px;">
+      <div class="wizard-wrapper">
+        
+        <!-- Mode Switcher: Standard vs Express (4C) -->
+        <div class="wizard-mode-toggle">
+          <div class="mode-pill-container">
+            <button class="mode-pill active" data-mode="standard" onclick="Wizard.setMode(false)">
+              <i class="fas fa-sliders-h"></i> Standard Executive Wizard (5 Steps)
+            </button>
+            <button class="mode-pill" data-mode="express" onclick="Wizard.setMode(true)">
+              <i class="fas fa-bolt"></i> Fast 2-Step Express Enrollment
+            </button>
+          </div>
+        </div>
+
+        <!-- Wizard Step Progress Bar -->
+        <div class="wizard-progress" id="wizardProgressWrap">
+          <div class="wizard-progress-bar-fill" id="wizardProgressBarFill"></div>
+          <div class="step-node active" data-step="1" onclick="Wizard.onStepNodeClick(1)">
+            <div class="step-circle">1</div>
+            <span class="step-name">Profile</span>
+          </div>
+          <div class="step-node" data-step="2" onclick="Wizard.onStepNodeClick(2)">
+            <div class="step-circle">2</div>
+            <span class="step-name">Track</span>
+          </div>
+          <div class="step-node" data-step="3" onclick="Wizard.onStepNodeClick(3)">
+            <div class="step-circle">3</div>
+            <span class="step-name">Batch</span>
+          </div>
+          <div class="step-node" data-step="4" onclick="Wizard.onStepNodeClick(4)">
+            <div class="step-circle">4</div>
+            <span class="step-name">Tuition</span>
+          </div>
+          <div class="step-node" data-step="5" onclick="Wizard.onStepNodeClick(5)">
+            <div class="step-circle">5</div>
+            <span class="step-name">QR Pay</span>
+          </div>
+        </div>
+
+        <!-- STANDARD 5-STEP CONTAINER -->
+        <div id="standardStepsContainer">
+          
+          <!-- STEP 1: Student Identity & Background (4A) -->
+          <div class="wizard-step-pane active" id="stepPane1">
+            <h3 style="font-size:1.3rem; margin-bottom:6px; color:#0f172a;">Step 1: Student Profile & Contact</h3>
+            <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:24px;">Please provide your contact details for admission records and Discord/Classroom access.</p>
+
+            <div class="form-grid-2" style="margin-bottom:20px;">
+              <div class="form-group-custom">
+                <label class="form-label-custom">Full Legal Name *</label>
+                <input type="text" class="input-custom" id="wizFullName" placeholder="e.g. Jordan Miller" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="form-label-custom">Email Address *</label>
+                <input type="email" class="input-custom" id="wizEmail" placeholder="jordan@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-bottom:20px;">
+              <div class="form-group-custom">
+                <label class="form-label-custom">Phone / WhatsApp Number *</label>
+                <input type="tel" class="input-custom" id="wizPhone" placeholder="+1 (555) 000-0000" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="form-label-custom">Current Academic / Professional Background</label>
+                <select class="select-custom" id="wizEducation">
+                  <option value="Undergraduate Student">Undergraduate / College Student</option>
+                  <option value="Software Developer / Engineer">Software Developer / Engineer</option>
+                  <option value="Data Analyst / Scientist">Data Analyst / Scientist</option>
+                  <option value="Product Manager / Business Lead">Product Manager / Business Lead</option>
+                  <option value="Non-Technical Professional">Non-Technical Professional / Explorer</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="form-label-custom">LinkedIn or GitHub Profile (Optional)</label>
+              <input type="url" class="input-custom" id="wizLinkedin" placeholder="https://linkedin.com/in/username">
+            </div>
+          </div>
+
+          <!-- STEP 2: Track & Add-on Selection (4B) -->
+          <div class="wizard-step-pane" id="stepPane2">
+            <div style="margin-bottom:24px;">
+              <h3 style="font-size:1.35rem; margin-bottom:6px; color:#0f172a; font-weight:800;">Step 2: Choose Your AI Specialization Track</h3>
+              <p style="color:var(--text-muted); font-size:0.925rem;">Select your preferred course track below. Every option includes live instructor cohorts, cloud GPU labs, and verified certification.</p>
+            </div>
+
+            <!-- Square Cards Grid for Course Tracks with Fees -->
+            <div class="interactive-track-picker course-square-grid" id="wizardTrackContainer">
+              <!-- Rendered dynamically as square cards with fees -->
+            </div>
+
+            <label class="form-label-custom" style="margin-top:28px; margin-bottom:12px; font-size:0.95rem; font-weight:700;">Optional Compute & VIP Mentorship Add-ons</label>
+            <div class="addon-checkboxes" id="wizardAddonsContainer">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- STEP 3: Batch Timing & Mode (4A) -->
+          <div class="wizard-step-pane" id="stepPane3">
+            <h3 style="font-size:1.3rem; margin-bottom:6px; color:#0f172a;">Step 3: Select Preferred Cohort Timing</h3>
+            <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:20px;">Choose a schedule that fits your routine. All live cohorts include recording access.</p>
+
+            <div id="wizardBatchContainer">
+              <!-- Rendered dynamically with live seat capacity -->
+            </div>
+          </div>
+
+          <!-- STEP 4: Fee Review & Scholarship Voucher (3C & 4A) -->
+          <div class="wizard-step-pane" id="stepPane4">
+            <h3 style="font-size:1.3rem; margin-bottom:6px; color:#0f172a;">Step 4: Review Tuition & Scholarship Voucher</h3>
+            <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:20px;">Verify your selections and apply any valid scholarship or early bird vouchers.</p>
+
+            <div class="calc-summary-card" style="margin-bottom:24px;">
+              <div class="calc-summary-title">Admission Fee Summary</div>
+              
+              <div class="calc-breakdown-row">
+                <span id="step4TrackName">Course Tuition:</span>
+                <strong id="step4TrackPrice" style="color:#0f172a;">₹0</strong>
+              </div>
+
+              <div class="calc-breakdown-row">
+                <span>Selected Add-ons:</span>
+                <strong id="step4AddonsPrice" style="color:#0f172a;">+₹0</strong>
+              </div>
+
+              <div class="calc-breakdown-row discount-row" id="step4DiscountRow" style="display:none;">
+                <span>Scholarship Voucher:</span>
+                <strong id="step4DiscountVal" style="color:var(--neon-emerald);">-₹0</strong>
+              </div>
+
+              <div class="calc-total-divider"></div>
+              <div class="calc-total-row">
+                <span class="calc-total-label">Total Payable:</span>
+                <span class="calc-total-price" id="step4TotalPrice">₹0</span>
+              </div>
+            </div>
+
+            <!-- Voucher Code Entry -->
+            <div class="form-group-custom" style="margin-bottom:20px;">
+              <label class="form-label-custom">Have a Scholarship Voucher or Promo Code?</label>
+              <div class="voucher-input-wrap">
+                <input type="text" class="input-custom" id="wizardVoucherInput" placeholder="Try FUTUREAI20 or STUDENT50" style="text-transform: uppercase;">
+                <button class="btn btn-secondary" onclick="Wizard.applyVoucher()">Apply Voucher</button>
+              </div>
+              <div id="voucherFeedbackMsg" style="font-size:0.8rem; margin-top:6px;"></div>
+            </div>
+          </div>
+
+          <!-- STEP 5: Scan & Pay QR Code Gateway (Feature: Payment through QR Code) -->
+          <div class="wizard-step-pane" id="stepPane5">
+            <div style="text-align:center; margin-bottom:20px;">
+              <span class="section-tag" style="background:rgba(2, 132, 199, 0.08); border-color:rgba(2, 132, 199, 0.25); color:var(--neon-cyan);">
+                <i class="fas fa-lock"></i> 256-Bit Encrypted Instant Checkout
+              </span>
+              <h3 style="font-size:1.6rem; font-weight:800; color:#0f172a; margin-top:8px;">
+                Scan & Pay with Any Payment App
+              </h3>
+              <p style="color:var(--text-muted); font-size:0.875rem;">
+                Scan the dynamic QR code using Google Pay, Apple Pay, PhonePe, Paytm, Revolut, or your banking app.
+              </p>
+            </div>
+
+            <div class="payment-grid-responsive">
+              
+              <!-- Left: QR Code Display Card -->
+              <div class="payment-qr-card">
+                <div style="font-size:0.85rem; color:#64748b; font-weight:700; margin-bottom:4px; letter-spacing:0.04em;">TOTAL ADMISSION TUITION</div>
+                <div style="font-size:2.3rem; font-weight:900; color:#0f172a; font-family:var(--font-mono); margin-bottom:16px;" id="qrPaymentTotalDisplay">
+                  ₹0
+                </div>
+
+                <!-- High-Definition QR Code Frame -->
+                <div class="qr-code-display-wrap">
+                  <div class="qr-scanline"></div>
+                  <div id="wizardPaymentQrSlot" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+                    <!-- Dynamic Crisp 25x25 Matrix QR Code SVG rendered here -->
+                  </div>
+                </div>
+
+                <div style="font-size:0.825rem; color:#475569; font-weight:600; margin-bottom:6px;">
+                  Official Merchant UPI ID:
+                </div>
+                <div style="display:inline-flex; align-items:center; gap:10px; background:#f1f5f9; border:1px solid #cbd5e1; padding:8px 18px; border-radius:24px; font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#0284c7; margin-bottom:14px;">
+                  <span>admissions.nexus@okaxis</span>
+                  <button onclick="navigator.clipboard.writeText('admissions.nexus@okaxis'); App.showToast('Copied!', 'UPI ID copied to clipboard', 'info');" style="border:none; background:none; color:#64748b; cursor:pointer; font-size:0.9rem;" title="Copy UPI ID">
+                    <i class="fas fa-copy"></i>
+                  </button>
+                </div>
+
+                <!-- 1-Tap Mobile UPI Instant Payment Button (For single device checkout) -->
+                <div style="margin-bottom:14px;">
+                  <a href="upi://pay?pa=admissions.nexus@okaxis&pn=AI%20Nexus%20Academy&cu=INR" class="btn btn-secondary btn-sm" style="display:inline-flex; width:100%; justify-content:center; gap:8px; font-size:0.825rem; background:#f0f9ff; color:#0284c7; border-color:#0284c7; font-weight:700; text-decoration:none; padding:8px 12px;">
+                    <i class="fas fa-mobile-alt"></i> 📱 On Mobile? Tap to Open UPI App
+                  </a>
+                </div>
+
+                <div class="pay-apps-grid">
+                  <span class="pay-app-chip"><i class="fab fa-google-pay" style="font-size:1.1rem; color:#4285f4;"></i> Google Pay</span>
+                  <span class="pay-app-chip"><i class="fas fa-wallet" style="color:#5f259f;"></i> PhonePe</span>
+                  <span class="pay-app-chip"><i class="fas fa-money-bill-wave" style="color:#00b9f5;"></i> Paytm</span>
+                  <span class="pay-app-chip"><i class="fas fa-university" style="color:#059669;"></i> Any Bank UPI</span>
+                </div>
+              </div>
+
+              <!-- Right: Verification Details & Action Button -->
+              <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:20px; padding:26px 24px; box-shadow:var(--shadow-sm);">
+                <h4 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin-bottom:16px;">
+                  <i class="fas fa-receipt" style="color:var(--neon-cyan); margin-right:8px;"></i> Admission Summary
+                </h4>
+
+                <div style="display:flex; flex-direction:column; gap:12px; font-size:0.875rem; margin-bottom:20px; border-bottom:1px solid #f1f5f9; padding-bottom:16px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="color:#64748b;">Candidate Name:</span>
+                    <strong style="color:#0f172a;" id="qrPaymentCandidateName">Student</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="color:#64748b;">Selected Track:</span>
+                    <strong style="color:#0284c7; text-align:right;" id="qrPaymentTrackName">AI Track</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="color:#64748b;">Admission Clearance:</span>
+                    <span class="status-badge status-pending" style="font-size:0.75rem;"><i class="fas fa-hourglass-half"></i> Pending Payment</span>
+                  </div>
+                </div>
+
+                <div class="form-group-custom" style="margin-bottom:20px;">
+                  <label class="form-label-custom">UTR Reference / Bank Transaction ID</label>
+                  <input type="text" class="input-custom" id="qrPaymentTxnRef" placeholder="e.g. 429184029103 or UPI Ref No." style="font-family:var(--font-mono); font-size:0.9rem;">
+                  <div style="font-size:0.75rem; color:#64748b; margin-top:6px; line-height:1.4;">
+                    After paying via UPI QR or App, enter your 12-digit UTR or Txn Reference and click below to submit for instant admin verification.
+                  </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg" id="verifyQrPaymentBtn" style="width:100%; justify-content:center; background:linear-gradient(135deg, #059669 0%, #0284c7 100%); font-size:1.025rem; font-weight:800; padding:15px; border-radius:14px;" onclick="Wizard.verifyQRPayment()">
+                  <i class="fas fa-check-circle"></i> Submit Payment for Admin Approval
+                </button>
+
+                <div style="margin-top:16px; text-align:center; font-size:0.775rem; color:#64748b; display:flex; align-items:center; justify-content:center; gap:6px;">
+                  <i class="fas fa-shield-alt" style="color:#059669;"></i> 256-Bit Encrypted & Instant Real-Time Polling Listener
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- WAITING FOR ADMIN ACCEPTANCE PANE (Feature: Payment Approval Workflow) -->
+          <div class="wizard-step-pane" id="stepPanePendingApproval">
+            <div style="text-align:center; margin-bottom:28px;">
+              <div class="pending-radar-pulse-wrap" style="margin: 0 auto 16px auto; width: 72px; height: 72px; border-radius: 50%; background: rgba(217, 119, 6, 0.12); display: flex; align-items: center; justify-content: center; position: relative;">
+                <div class="pending-pulse-ring"></div>
+                <i class="fas fa-hourglass-half" style="font-size: 2rem; color: #d97706;"></i>
+              </div>
+              <span class="section-tag" style="background:rgba(217, 119, 6, 0.1); border-color:rgba(217, 119, 6, 0.3); color:#d97706;">
+                <i class="fas fa-clock"></i> Payment Submitted &bull; Waiting for Admin Acceptance
+              </span>
+              <h3 style="font-size:1.8rem; font-weight:800; color:#0f172a; margin-top:10px;">
+                Your Payment is Under Verification
+              </h3>
+              <p style="color:var(--text-muted); font-size:0.95rem; max-width:620px; margin:0 auto;">
+                Thank you, <strong id="pendingCandidateName" style="color:#0f172a;">Candidate</strong>! We have received your enrollment submission. The admissions team is currently verifying the transaction hash.
+              </p>
+            </div>
+
+            <!-- Application Receipt Dossier -->
+            <div class="glass-panel" style="padding: 28px; border-color: rgba(217, 119, 6, 0.3); max-width: 680px; margin: 0 auto 24px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:14px; margin-bottom:16px;">
+                <div>
+                  <span style="font-size:0.75rem; color:#64748b; font-weight:700; text-transform:uppercase;">APPLICATION REFERENCE</span>
+                  <div style="font-family:var(--font-mono); font-size:1.15rem; font-weight:800; color:var(--neon-cyan);" id="pendingApplicationId">AI-2026-XXXX</div>
+                </div>
+                <div style="text-align:right;">
+                  <span class="status-badge status-pending" id="pendingLiveBadge" style="font-size:0.8rem; padding:6px 14px;">
+                    <i class="fas fa-spinner fa-spin" style="margin-right:6px;"></i> Pending Admin Acceptance
+                  </span>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; font-size:0.875rem; margin-bottom:18px;">
+                <div>
+                  <span style="color:#64748b; font-size:0.775rem;">Selected AI Track:</span>
+                  <div style="font-weight:700; color:#0f172a;" id="pendingTrackTitle">Track</div>
+                </div>
+                <div>
+                  <span style="color:#64748b; font-size:0.775rem;">Cohort Batch:</span>
+                  <div style="font-weight:700; color:#0f172a;" id="pendingBatchName">Batch</div>
+                </div>
+                <div>
+                  <span style="color:#64748b; font-size:0.775rem;">Total Tuition:</span>
+                  <div style="font-weight:800; color:#059669; font-size:1.1rem;" id="pendingTotalPaid">₹0</div>
+                </div>
+                <div>
+                  <span style="color:#64748b; font-size:0.775rem;">Transaction Ref / UTR:</span>
+                  <div style="font-weight:700; color:#0f172a; font-family:var(--font-mono);" id="pendingTxnRefDisplay">—</div>
+                </div>
+                <div>
+                  <span style="color:#64748b; font-size:0.775rem;">Candidate Email:</span>
+                  <div style="font-weight:600; color:#334155;" id="pendingCandidateEmail">—</div>
+                </div>
+                <div>
+                  <span style="color:#64748b; font-size:0.775rem;">Submission Time:</span>
+                  <div style="font-weight:600; color:#334155;" id="pendingSubmittedTime">—</div>
+                </div>
+              </div>
+
+              <!-- Live Auto-Detection Alert Banner -->
+              <div style="background:rgba(2, 132, 199, 0.06); border:1px solid rgba(2, 132, 199, 0.2); border-radius:12px; padding:14px; display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:50%; background:#0284c7; color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <i class="fas fa-sync fa-spin"></i>
+                </div>
+                <div style="font-size:0.825rem; color:#334155; line-height:1.5;">
+                  <strong>Live Real-Time Sync Active:</strong> This screen is actively listening for Admin approval. As soon as the Admin accepts your payment, your <strong>Student ID Pass</strong> and <strong>Google Certificate</strong> will unlock automatically!
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:20px;">
+              <button class="btn btn-primary" onclick="Wizard.checkPaymentStatusManual()" id="checkStatusManualBtn">
+                <i class="fas fa-redo"></i> Check Status Now
+              </button>
+              <button class="btn btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('pendingApplicationId').textContent); App.showToast('Copied!', 'Application ID copied to clipboard.', 'info');">
+                <i class="fas fa-copy"></i> Copy Application ID
+              </button>
+              <button class="btn btn-secondary" onclick="App.showView('auth');">
+                <i class="fas fa-sign-in-alt"></i> Candidate Sign-In
+              </button>
+            </div>
+
+            <!-- Admin Test Simulator -->
+            <div style="text-align:center; padding:14px; background:#f8fafc; border:1px dashed #cbd5e1; border-radius:12px; max-width:520px; margin:0 auto;">
+              <span style="font-size:0.75rem; color:#64748b; font-weight:700; text-transform:uppercase;">Admin Quick Action (Testing Shortcut)</span>
+              <div style="margin-top:6px;">
+                <button class="btn btn-sm" style="background:#059669; color:#ffffff; font-weight:700; font-size:0.8rem; padding:6px 16px;" onclick="AdminDashboard.acceptPaymentFromCandidateScreen()">
+                  <i class="fas fa-check-circle"></i> ⚡ Accept & Approve Payment As Admin
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUCCESS PANE: Instant Digital Student ID Card & Certificate -->
+          <div class="wizard-step-pane" id="stepPaneSuccess">
+            <div style="text-align:center; margin-bottom:24px;">
+              <span class="section-tag" style="background:rgba(5, 150, 105, 0.1); border-color:rgba(5, 150, 105, 0.3); color:var(--neon-emerald);">
+                <i class="fas fa-check-circle"></i> Payment Verified & Enrollment Confirmed
+              </span>
+              <h3 style="font-size:1.8rem; color:#0f172a; margin-top:10px;">Welcome to AI Nexus Academy!</h3>
+              <p style="color:var(--text-muted); font-size:0.95rem;">Your transaction has cleared. Your official student credential and accredited Google Career Certificate are ready.</p>
+            </div>
+
+            <!-- Dual Showcase: ID Pass & Certificate -->
+            <div style="display:grid; grid-template-columns:1fr; gap:32px; margin-bottom:24px;">
+              <div id="wizardIdCardResult">
+                <!-- Digital Student ID Card Rendered Here -->
+              </div>
+              
+              <div style="margin-top:16px;">
+                <div style="text-align:center; margin-bottom:16px;">
+                  <span class="section-tag" style="background:rgba(2, 132, 199, 0.08); border-color:rgba(2, 132, 199, 0.25); color:var(--neon-cyan);">
+                    <i class="fas fa-award"></i> Official Accredited Professional Certificate
+                  </span>
+                </div>
+                <div id="wizardCertificateSlot">
+                  <!-- Google Certificate Rendered Here -->
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center; margin-top:20px;">
+              <button class="btn btn-primary btn-lg" onclick="App.showView('student-hub');">
+                <i class="fas fa-graduation-cap"></i> Launch Student Learning Hub
+              </button>
+            </div>
+          </div>
+
+          <!-- Footer Navigation Buttons -->
+          <div class="wizard-footer-nav">
+            <button class="btn btn-secondary" id="wizardPrevBtn" onclick="Wizard.prevStep()" style="display:none;">
+              <i class="fas fa-arrow-left"></i> Previous Step
+            </button>
+            <div style="flex:1;"></div>
+            <button class="btn btn-primary" id="wizardNextBtn" onclick="Wizard.nextStep()">
+              Continue <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-primary btn-lg" id="wizardSubmitBtn" onclick="Wizard.submitEnrollment()" style="display:none;">
+              <i class="fas fa-id-card"></i> Complete Registration & Get Student Pass
+            </button>
+          </div>
+
+        </div>
+
+        <!-- EXPRESS 2-STEP CONTAINER (4C) -->
+        <div id="expressStepPane" style="display:none;">
+          <h3 style="font-size:1.3rem; margin-bottom:6px; color:#0f172a;">Fast 2-Step Seat Reservation</h3>
+          <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:20px;">Book your seat in 30 seconds with immediate confirmation.</p>
+
+          <div class="form-grid-2" style="margin-bottom:16px;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Full Name *</label>
+              <input type="text" class="input-custom" id="expressFullName" placeholder="Your name">
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Email Address *</label>
+              <input type="email" class="input-custom" id="expressEmail" placeholder="your.email@example.com">
+            </div>
+          </div>
+
+          <div class="form-group-custom" style="margin-bottom:16px;">
+            <label class="form-label-custom">Phone / WhatsApp *</label>
+            <input type="tel" class="input-custom" id="expressPhone" placeholder="+1 (555) 000-0000">
+          </div>
+
+          <div class="form-grid-2" style="margin-bottom:24px;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Choose Track</label>
+              <select class="select-custom" id="expressTrackSelect"></select>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Choose Batch</label>
+              <select class="select-custom" id="expressBatchSelect"></select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg" style="width:100%;" onclick="Wizard.submitExpressEnrollment()">
+            <i class="fas fa-bolt"></i> Instant Reserve & Generate Student ID
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       VIEW 3: STUDENT HUB / LEARNING PORTAL (Feature 5A)
+       ======================================================================== -->
+  <main id="view-student-hub" class="view-section">
+    <div class="view-banner">
+      <div class="container">
+        <span class="section-tag"><i class="fas fa-graduation-cap"></i> Student Learning Portal</span>
+        <h1 style="font-size:clamp(2rem, 4vw, 3rem); font-weight:900;">Welcome, <span class="gradient-text" id="hubStudentName">Student</span>!</h1>
+        <p style="color:var(--text-muted); margin-top:8px;">Access your live classroom, course roadmap, starter kit downloads, and schedule countdown.</p>
+      </div>
+    </div>
+
+    <div class="container section" style="padding-top: 20px;" id="studentHubContent">
+      <div class="student-portal-grid">
+        
+        <!-- Sidebar: Digital ID Card Slot -->
+        <div class="student-profile-sidebar">
+          <div id="hubStudentIdCardSlot">
+            <!-- Digital ID rendered here -->
+          </div>
+        </div>
+
+        <!-- Main Hub Content -->
+        <div style="display:flex; flex-direction:column; gap:24px;">
+          
+          <!-- Live Session Countdown Card -->
+          <div class="schedule-countdown-card">
+            <span class="section-tag" style="background:rgba(157,78,221,0.2); border-color:rgba(157,78,221,0.5); color:#d8b4fe;">
+              <i class="fas fa-broadcast-tower"></i> Next Live Lecture Starting In
+            </span>
+            
+            <div class="countdown-timer-display">
+              <div class="countdown-box">
+                <div class="countdown-val" id="cdDays">02</div>
+                <div class="countdown-lbl">Days</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-val" id="cdHours">14</div>
+                <div class="countdown-lbl">Hours</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-val" id="cdMinutes">36</div>
+                <div class="countdown-lbl">Mins</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-val" id="cdSeconds">50</div>
+                <div class="countdown-lbl">Secs</div>
+              </div>
+            </div>
+
+            <div style="font-size:0.9rem; color:#334155; margin-bottom:16px;">
+              <strong id="hubTrackTitle">AI Literacy & GenAI for Beginners</strong> &bull; <span id="hubBatchName">Weekend Cohort</span>
+            </div>
+
+            <button class="btn btn-primary" onclick="StudentHub.joinLiveSession()">
+              <i class="fas fa-video"></i> Launch Google Meet / Zoom Classroom
+            </button>
+          </div>
+
+          <!-- Starter Kit & Resources -->
+          <div class="glass-panel" style="padding:28px;">
+            <h4 style="font-size:1.2rem; margin-bottom:16px; color:#0f172a;">
+              <i class="fas fa-download" style="color:var(--neon-cyan); margin-right:8px;"></i> Student Starter Kit & Downloads
+            </h4>
+
+            <div class="resources-grid">
+              <div class="resource-card">
+                <div>
+                  <strong style="color:#0f172a; font-size:0.95rem;">Master Syllabus & Schedule</strong>
+                  <div style="font-size:0.775rem; color:var(--text-muted);">Week-by-week topic guide</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="StudentHub.downloadResource('syllabus')">
+                  <i class="fas fa-file-pdf"></i> Download
+                </button>
+              </div>
+
+              <div class="resource-card">
+                <div>
+                  <strong style="color:#0f172a; font-size:0.95rem;">Python & GPU Environment Setup</strong>
+                  <div style="font-size:0.775rem; color:var(--text-muted);">CUDA, Conda, PyTorch Guide</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="StudentHub.downloadResource('python-guide')">
+                  <i class="fas fa-terminal"></i> Setup
+                </button>
+              </div>
+
+              <div class="resource-card">
+                <div>
+                  <strong style="color:#0f172a; font-size:0.95rem;">AI Tools Cheatsheet 2026</strong>
+                  <div style="font-size:0.775rem; color:var(--text-muted);">Prompting, RAG & Vector DBs</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="StudentHub.downloadResource('cheatsheet')">
+                  <i class="fas fa-book"></i> Cheatsheet
+                </button>
+              </div>
+
+              <div class="resource-card">
+                <div>
+                  <strong style="color:#0f172a; font-size:0.95rem;">Discord Community Room</strong>
+                  <div style="font-size:0.775rem; color:var(--text-muted);">24/7 TA support & peers</div>
+                </div>
+                <a href="https://discord.com" target="_blank" class="btn btn-secondary btn-sm">
+                  <i class="fab fa-discord"></i> Join
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Milestone Progress Tracker & Automatic AI Certificate -->
+          <div class="glass-panel" style="padding:28px; border-color:rgba(2,132,199,0.3);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <h4 style="font-size:1.1rem; color:#0f172a;"><i class="fas fa-award" style="color:#1a73e8; margin-right:8px;"></i> Official Google-Grade AI Certificate</h4>
+              <span class="status-badge status-confirmed" id="hubStatusBadge">Confirmed</span>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;" id="hubEnrolledDate">Enrolled on 2026-08-14</div>
+            <div class="batch-capacity-bar" style="height:10px; margin-bottom:16px;">
+              <div class="batch-capacity-fill" style="width: 100%; background:linear-gradient(90deg, #1a73e8, #34a853);"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div style="font-size:0.8rem; color:#475569;">
+                <i class="fas fa-check-circle" style="color:var(--neon-emerald);"></i> Certificate Credential Ready for Download & Verification
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="App.openStudentHubCertificate()">
+                <i class="fas fa-award"></i> View & Print My AI Certificate
+              </button>
+            </div>
+          </div>
+
+          <!-- Graduation Capstone Project Submission & Status Tracker -->
+          <div style="margin-top:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <h4 style="font-size:1.25rem; font-weight:800; color:#0f172a;">
+                <i class="fas fa-microchip" style="color:var(--neon-cyan); margin-right:8px;"></i> Graduation Capstone Project Desk
+              </h4>
+              <span class="section-tag" style="font-size:0.75rem; padding:4px 10px; margin-bottom:0;">
+                <i class="fas fa-graduation-cap"></i> Requirement for Degree Certificate
+              </span>
+            </div>
+            <div id="studentCapstoneDeskContainer">
+              <!-- Rendered dynamically by CapstonePortal -->
+            </div>
+          </div>
+
+          <!-- Live Faculty Mentorship & Chat Desk -->
+          <div style="margin-top:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <h4 style="font-size:1.25rem; font-weight:800; color:#0f172a;">
+                <i class="fas fa-comments" style="color:var(--neon-violet); margin-right:8px;"></i> Live Faculty Mentorship Desk
+              </h4>
+              <span style="font-size:0.8rem; color:#059669; font-weight:700;">
+                <i class="fas fa-circle" style="font-size:0.5rem; vertical-align:middle; margin-right:4px;"></i> Dean & Instructors Online
+              </span>
+            </div>
+            <div id="studentMentorshipChatContainer">
+              <!-- Rendered dynamically by MessagingPortal -->
+            </div>
+          </div>
+
+          <!-- Direct Embedded Official Certificate Showcase -->
+          <div style="margin-top:10px;">
+            <div style="margin-bottom:16px;">
+              <h4 style="font-size:1.25rem; font-weight:800; color:#0f172a;">
+                <i class="fas fa-certificate" style="color:#1a73e8; margin-right:8px;"></i> Verified Google Career Certificate
+              </h4>
+              <p style="font-size:0.875rem; color:var(--text-muted);">Your official accredited credential, ready to share on LinkedIn or download as a PDF diploma.</p>
+            </div>
+            <div id="hubCertificateEmbedSlot">
+              <!-- Google Certificate Rendered Here -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       VIEW 4: ADMIN / ADMISSIONS CRM SUITE (Feature 6A)
+       ======================================================================== -->
+  <main id="view-admin-portal" class="view-section">
+    <div class="view-banner">
+      <div class="container">
+        <span class="section-tag" style="background:rgba(157,78,221,0.2); border-color:rgba(157,78,221,0.5); color:#d8b4fe;">
+          <i class="fas fa-user-shield"></i> Administration & Admissions Suite
+        </span>
+        <h1 style="font-size:clamp(2rem, 4vw, 3rem); font-weight:900;">Admissions <span class="gradient-violet-text">Management Console</span></h1>
+        <p style="color:var(--text-muted); margin-top:8px;">Monitor enrollments, manage batch capacity limits, update student verification statuses, and export student rosters.</p>
+      </div>
+    </div>
+
+    <div class="container section" style="padding-top: 20px;">
+      
+      <!-- KPI Metric Cards -->
+      <div class="admin-kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(0, 240, 255, 0.15); color:var(--neon-cyan);">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="kpi-data">
+            <h3 id="kpiTotalStudents">0</h3>
+            <p>Total Registrations</p>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(16, 185, 129, 0.15); color:var(--neon-emerald);">
+            <i class="fas fa-rupee-sign"></i>
+          </div>
+          <div class="kpi-data">
+            <h3 id="kpiTotalRevenue">₹0</h3>
+            <p>Tuition Revenue</p>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(157, 78, 221, 0.15); color:var(--neon-violet);">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <div class="kpi-data">
+            <h3 id="kpiOccupancy">0%</h3>
+            <p>Avg Cohort Occupancy</p>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:rgba(236, 72, 153, 0.15); color:var(--neon-magenta);">
+            <i class="fas fa-fire"></i>
+          </div>
+          <div class="kpi-data">
+            <h3 id="kpiTopTrack" style="font-size:1.3rem;">—</h3>
+            <p>Top Demand Track</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Batch Capacity Management Section -->
+      <div class="glass-panel" style="padding:24px; margin-bottom:30px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <div>
+            <h4 style="font-size:1.15rem; color:#0f172a;"><i class="fas fa-layer-group" style="color:var(--neon-cyan); margin-right:8px;"></i> Live Batch Capacities</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted);">Real-time seat reservations across active cohorts.</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="AdminDashboard.openAddBatchModal()">
+            <i class="fas fa-plus"></i> Create New Batch
+          </button>
+        </div>
+
+        <div id="adminBatchMeters">
+          <!-- Batch meters populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Student Applications Management Table -->
+      <div class="glass-panel" style="padding:28px;">
+        <div class="admin-toolbar">
+          <div class="admin-search-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" class="admin-search-input" id="adminSearchInput" placeholder="Search by student name, email, or Student ID...">
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <select class="select-custom" id="adminTrackFilter" style="width:auto; padding:10px 14px; font-size:0.85rem;">
+              <option value="ALL">All Tracks</option>
+              <option value="ai-beginners">1C: Beginners & Business</option>
+              <option value="applied-ml-ds">Data Science & ML</option>
+              <option value="genai-agents">GenAI & Agents</option>
+              <option value="fullstack-ai-engineer">Full-Stack AI Track</option>
+            </select>
+
+            <select class="select-custom" id="adminStatusFilter" style="width:auto; padding:10px 14px; font-size:0.85rem;">
+              <option value="ALL">All Statuses</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Payment Verified">Payment Verified</option>
+              <option value="Pending">Pending</option>
+              <option value="Waitlisted">Waitlisted</option>
+            </select>
+
+            <button class="btn btn-primary btn-sm" onclick="AdminDashboard.exportToCSV()">
+              <i class="fas fa-file-csv"></i> Export to CSV
+            </button>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <span class="demo-nav-badge" id="adminStudentCountBadge">0 Applications</span>
+          <button class="btn btn-secondary btn-sm" style="font-size:0.75rem; padding:4px 10px;" onclick="StorageService.resetToDefault(); AdminDashboard.render(); App.showToast('Database Reset', 'Student database has been reset to zero.', 'info');">
+            <i class="fas fa-redo"></i> Reset Database
+          </button>
+        </div>
+
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name & Contact</th>
+                <th>Enrolled Track & Batch</th>
+                <th>Tuition (₹)</th>
+                <th>Admission Status</th>
+                <th>Registered Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminStudentTableBody">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       MODALS
+       ======================================================================== -->
+  
+  <!-- Course Syllabus Modal -->
+  <div class="modal-backdrop" id="courseModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="App.closeModal('courseModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="courseModalBody">
+        <!-- Content populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin View Pass Modal -->
+  <div class="modal-backdrop" id="adminPassModal">
+    <div class="modal-card" style="max-width:520px;">
+      <button class="modal-close-btn" onclick="App.closeModal('adminPassModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3 style="font-size:1.3rem; margin-bottom:20px; color:#fff; text-align:center;">
+        <i class="fas fa-id-card" style="color:var(--neon-cyan); margin-right:8px;"></i> Student Admission Pass
+      </h3>
+      <div id="adminPassModalContent">
+        <!-- Digital Card Rendered Here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate View Modal -->
+  <div class="modal-backdrop" id="certModal">
+    <div class="modal-card" style="max-width:980px; padding: 24px;">
+      <button class="modal-close-btn" onclick="App.closeModal('certModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="modalCertContainer">
+        <!-- AI Certificate Rendered Here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Add New Batch Modal -->
+  <div class="modal-backdrop" id="addBatchModal">
+    <div class="modal-card" style="max-width:520px;">
+      <button class="modal-close-btn" onclick="App.closeModal('addBatchModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3 style="font-size:1.3rem; margin-bottom:16px; color:#0f172a;">
+        <i class="fas fa-calendar-plus" style="color:var(--neon-cyan); margin-right:8px;"></i> Create New Cohort Batch
+      </h3>
+
+      <form onsubmit="AdminDashboard.createBatch(event)">
+        <div class="form-group-custom" style="margin-bottom:16px;">
+          <label class="form-label-custom">Batch Name *</label>
+          <input type="text" class="input-custom" id="newBatchName" placeholder="e.g. October Fast-Track Evening" required>
+        </div>
+
+        <div class="form-group-custom" style="margin-bottom:16px;">
+          <label class="form-label-custom">Schedule & Timing *</label>
+          <input type="text" class="input-custom" id="newBatchSchedule" placeholder="e.g. Mon & Wed | 08:00 PM - 11:00 PM EST" required>
+        </div>
+
+        <div class="form-grid-2" style="margin-bottom:24px;">
+          <div class="form-group-custom">
+            <label class="form-label-custom">Start Date *</label>
+            <input type="text" class="input-custom" id="newBatchStartDate" placeholder="e.g. Oct 12, 2026" required>
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom">Seat Limit</label>
+            <input type="number" class="input-custom" id="newBatchMaxSeats" value="30" min="5" max="100">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">
+          <i class="fas fa-check"></i> Launch Batch
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo" data-route="home">
+            <div class="nav-logo-icon"><i class="fas fa-brain"></i></div>
+            <span>AI NEXUS <span class="gradient-text">ACADEMY</span></span>
+          </a>
+          <p>Empowering students, developers, and leaders with cutting-edge Artificial Intelligence education, live mentorship, and career acceleration.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Course Tracks</h4>
+          <ul>
+            <li><a href="#courses" data-route="courses" onclick="App.filterCourses('Beginner')">1C: AI for Beginners</a></li>
+            <li><a href="#courses" data-route="courses" onclick="App.filterCourses('Intermediate')">Applied Machine Learning</a></li>
+            <li><a href="#courses" data-route="courses" onclick="App.filterCourses('Advanced')">Generative AI & Agents</a></li>
+            <li><a href="#courses" data-route="courses">Full-Stack AI Engineering</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Portals</h4>
+          <ul>
+            <li><a href="#register" data-route="register">Student Registration</a></li>
+            <li><a href="#certificate" data-route="certificate">AI Certificate Portal</a></li>
+            <li><a href="#student-hub" data-route="student-hub">Student Learning Hub</a></li>
+            <li><a href="#auth" data-route="auth">Member Login</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact & Admissions</h4>
+          <ul>
+            <li><a href="mailto:abddeveloper@gmail.com" style="color:#0f172a; text-decoration:none; font-weight:600;"><i class="fas fa-envelope" style="color:var(--neon-cyan); margin-right:8px;"></i> abddeveloper@gmail.com</a></li>
+            <li><a href="tel:+919844691633" style="color:#0f172a; text-decoration:none; font-weight:600;"><i class="fas fa-phone" style="color:var(--neon-emerald); margin-right:8px;"></i> +91 9844691633</a></li>
+            <li><a href="tel:+919061106019" style="color:#0f172a; text-decoration:none; font-weight:600;"><i class="fas fa-phone" style="color:var(--neon-emerald); margin-right:8px;"></i> +91 9061106019</a></li>
+            <li><a href="tel:+919061106009" style="color:#0f172a; text-decoration:none; font-weight:600;"><i class="fas fa-phone" style="color:var(--neon-emerald); margin-right:8px;"></i> +91 9061106009</a></li>
+            <li><span style="color:var(--text-muted); font-size:0.8rem;"><i class="fas fa-map-marker-alt" style="color:var(--neon-magenta); margin-right:8px;"></i> Global Remote Academy & Live Labs</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 AI Nexus Academy Inc. All rights reserved.</div>
+        <div style="display:flex; gap:18px;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Admission</a>
+          <a href="#">Academic Code of Conduct</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase Cloud SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+
+  <!-- Application Scripts -->
+  <script src="js/three-figure.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/id-card.js"></script>
+  <script src="js/certificate.js"></script>
+  <script src="js/wizard.js"></script>
+  <script src="js/messaging-capstone.js"></script>
+  <script src="js/student-hub.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/welcome-ai.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
